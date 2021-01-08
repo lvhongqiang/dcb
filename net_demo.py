@@ -19,7 +19,11 @@ num_datapoints = 90
 x = np.linspace(min_value, max_value, num_datapoints)
 
 y = 2 * np.square(x) + 7
+print(y)
+print(np.linalg.norm(y))
 y /= np.linalg.norm(y)
+print(y)
+exit(0)
 
 data = x.reshape(num_datapoints, 1)
 labels = y.reshape(num_datapoints, 1)
