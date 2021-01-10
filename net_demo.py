@@ -21,9 +21,8 @@ x = np.linspace(min_value, max_value, num_datapoints)
 y = 2 * np.square(x) + 7
 print(y)
 print(np.linalg.norm(y))
-y /= np.linalg.norm(y)
+y /= 1000
 print(y)
-exit(0)
 
 data = x.reshape(num_datapoints, 1)
 labels = y.reshape(num_datapoints, 1)
@@ -37,7 +36,7 @@ plt.title('Input data')
 plt.show()
 
 # 定义一个深度神经网络，带有两个隐藏层，每个隐藏层由10个神经元组成，输出层由一个神经元组成
-multilayer_net = nl.net.newff([[min_value, max_value]], [10, 10, 10, 10, 1])
+multilayer_net = nl.net.newff([[min_value, max_value]], [10, 10, 1])
 
 # 设置训练算法为梯度下降法
 multilayer_net.trainf = nl.train.train_gd
@@ -60,6 +59,8 @@ plt.show()
 x2 = np.linspace(min_value, max_value, num_datapoints * 2)
 y2 = multilayer_net.sim(x2.reshape(x2.size, 1)).reshape(x2.size)
 y3 = predicted_output.reshape(num_datapoints)
+print(y2)
+print(y3)
 
 plt.figure()
 plt.plot(x2, y2, '-', x, y, '.', x, y3, 'p')
